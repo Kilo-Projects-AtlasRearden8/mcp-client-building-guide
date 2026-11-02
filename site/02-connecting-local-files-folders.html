@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2. Connecting to Local Files and Folders — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>2. Connecting to Local Files and Folders</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <h2>The idea</h2>
+    <p>You have folders of documents, notes, or books on your computer. You want an AI assistant to read them and answer questions &mdash; without you copying and pasting everything into the chat. An MCP <strong>filesystem server</strong> gives the AI controlled access to chosen folders on your machine.</p>
+  </section>
+
+  <section>
+    <h2>Step 1: Pick the folders you want to share</h2>
+    <p>Before installing anything, decide exactly which folders the AI may see. Good choices:</p>
+    <ul>
+      <li>A dedicated folder you create for this purpose, such as <code>~/ai-readable/</code></li>
+      <li>A specific project folder</li>
+      <li>Your notes or drafts folder</li>
+    </ul>
+    <p>Avoid sharing your whole home directory, folders with passwords/tax/medical/bank data, or system folders.</p>
+    <div class="warn"><strong>Rule of thumb:</strong> share only what you would be comfortable showing the AI.</div>
+  </section>
+
+  <section>
+    <h2>Step 2: Start the filesystem server</h2>
+    <pre><code>python3 examples/python/servers/filesystem_server.py examples/python/example-data</code></pre>
+    <p>The server is read-only and confines all access to the example-data folder, rejecting path-traversal attempts.</p>
+  </section>
+
+  <section>
+    <h2>Step 3: Connect the MCP client</h2>
+    <pre><code>python3 examples/python/mcp_client.py python3 examples/python/servers/filesystem_server.py examples/python/example-data</code></pre>
+    <pre><code>Connected to server: example-python-filesystem
+Available tools (2):
+  - list_directory: List the files and folders in a shared folder (read-only)
+  - read_file: Read the contents of a shared file (read-only)</code></pre>
+  </section>
+
+  <section>
+    <h2>Step 4: List the folder</h2>
+    <pre><code>python3 examples/python/local_llm_bridge.py filesystem examples/python/example-data "List the files"</code></pre>
+    <p>Expected output lists <code>welcome.txt</code> and <code>notes.md</code>.</p>
+  </section>
+
+  <section>
+    <h2>Step 5: Read a file</h2>
+    <pre><code>python3 examples/python/local_llm_bridge.py filesystem examples/python/example-data "Read welcome.txt"</code></pre>
+  </section>
+
+  <section>
+    <h2>Step 6: Confirm safety guards</h2>
+    <pre><code>python3 examples/python/test_client.py</code></pre>
+    <p class="ok">All tests pass, including "path traversal rejected" and "unknown tool rejected".</p>
+  </section>
+
+  <section>
+    <h2>Step 7: Disconnect when you are done</h2>
+    <p>Stop the server process (<code>Ctrl+C</code>). The AI loses access immediately.</p>
+  </section>
+
+  <section class="nav">
+    <a href="01-what-is-an-mcp-client.html">&larr; Previous: 01. What is an MCP client?</a>
+    <a href="03-building-first-python-mcp-client.html">Next: 03. Building your first Python client &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

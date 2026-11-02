@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Printable Cheat Sheet — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>Printable Cheat Sheet</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section class="card">
+    <p class="kicker">MCP Client Cheat Sheet (printable)</p>
+    <p>A one-page reference for building and using MCP clients that connect local LLMs to files, folders, and apps. Print this and keep it by your computer.</p>
+  </section>
+
+  <section>
+    <h2>1. What MCP does</h2>
+    <pre><code>You ──► AI app (MCP client) ──► MCP server ──► your files/folders/apps</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Connect to local files and folders (6 steps)</h2>
+    <ol>
+      <li>Pick ONE folder to share.</li>
+      <li>Start a read-only filesystem MCP server pointing at that folder.</li>
+      <li>Connect the MCP client to the server.</li>
+      <li>List the server's tools.</li>
+      <li>Call a tool through the client.</li>
+      <li>Stop the server when done.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3. Build your first Python MCP client</h2>
+    <pre><code>from mcp_client import MCPClient
+client = MCPClient(["python3", "servers/filesystem_server.py", "./example-data"])
+client.start()
+info = client.initialize()
+tools = client.list_tools()
+result = client.call_tool("read_file", {"path": "welcome.txt"})
+client.close()</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Run the examples</h2>
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>python3 test_client.py</code></td><td>Run the full test suite (11 tests)</td></tr>
+        <tr><td><code>python3 local_llm_bridge.py filesystem ./example-data "List the files"</code></td><td>Filesystem server + client</td></tr>
+        <tr><td><code>python3 local_llm_bridge.py notes ./notes-data "Read welcome.md"</code></td><td>Notes app server + client</td></tr>
+      </tbody>
+    </table>
+    <p class="ok">Expected test output ends with <code>[test] ALL TESTS PASSED</code>.</p>
+  </section>
+
+  <section>
+    <h2>5. Privacy &amp; safety (golden rules)</h2>
+    <ul>
+      <li>Share specific folders, never your whole computer</li>
+      <li>Never share folders with secrets</li>
+      <li>Prefer read-only servers</li>
+      <li>You are in charge &mdash; stop or remove a server anytime</li>
+      <li>Assume the AI provider sees what you send it</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Common MCP tools</h2>
+    <table>
+      <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>list_directory</code></td><td>List files/folders in a shared folder</td></tr>
+        <tr><td><code>read_file</code></td><td>Read the contents of a shared file</td></tr>
+        <tr><td><code>list_notes</code></td><td>List notes in a local notes app</td></tr>
+        <tr><td><code>read_note</code></td><td>Read a note by filename</td></tr>
+        <tr><td><code>add_note</code></td><td>Create or overwrite a note</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="nav">
+    <a href="05-privacy-safety.html">&larr; Previous: 05. Privacy and safety rules</a>
+    <a href="glossary.html">Glossary &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

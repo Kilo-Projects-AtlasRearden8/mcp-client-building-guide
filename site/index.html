@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building MCP Clients — Asdale Dynamics, LLC</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <h1>Building MCP Clients</h1>
+    <nav>
+      <a href="#what">What MCP clients do</a>
+      <a href="#connect">Local files and folders</a>
+      <a href="#build">Build your first Python client</a>
+      <a href="#llm">Connect a local LLM</a>
+      <a href="#safety">Privacy and safety</a>
+      <a href="#cheat">Cheat sheet</a>
+    </nav>
+    <p style="font-size:0.9rem;color:var(--muted);margin-top:0.25rem;">A beginner-friendly manual and static site &mdash; plain English, step by step, never condescending.</p>
+  </div>
+</header>
+<main id="start">
+  <section class="card">
+    <p class="kicker">About this guide</p>
+    <h2>Building MCP Clients</h2>
+    <p>This guide walks you through <strong>MCP clients</strong> &mdash; what they do, how to connect them to local files and folders, how to build your first Python MCP client, how to connect a local LLM to files, folders, and apps, and the privacy and safety rules for letting an AI access your files.</p>
+    <p>It was written for Dylan Asdale, a registered nurse turned AI author and founder of <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026), and for anyone new to MCP who wants a hands-on, local-first introduction.</p>
+    <p class="ok"><strong>No secrets, API keys, or personal data</strong> are needed for any of the examples. Everything runs locally on your computer.</p>
+  </section>
+
+  <section class="toc">
+    <h2>In this guide</h2>
+    <ul>
+      <li><a href="#what">1. What is an MCP client?</a></li>
+      <li><a href="#connect">2. Connecting to local files and folders</a></li>
+      <li><a href="#build">3. Building your first Python MCP client</a></li>
+      <li><a href="#llm">4. Connecting a local LLM to files, folders, and apps</a></li>
+      <li><a href="#safety">5. Privacy and safety rules</a></li>
+      <li><a href="#cheat">Printable cheat sheet</a></li>
+      <li><a href="01-what-is-an-mcp-client.html">Read section 1 &rarr;</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </section>
+
+  <section id="what">
+    <h2>1. What is an MCP client? <span class="tag">Beginner</span></h2>
+    <p>MCP stands for <strong>Model Context Protocol</strong>. Think of it like a universal plug: instead of every AI app inventing its own way to reach your files, your calendar, or a database, MCP gives them one shared language.</p>
+    <p>The <strong>client</strong> lives inside the AI app you use. The <strong>server</strong> is a small program that provides access to something useful &mdash; your local files, a folder of documents, a website.</p>
+    <p>Client and server talk over a simple connection. The most common one for beginners is called <strong>stdio</strong>: the server runs as a regular process on your computer, and the client sends it messages over standard input/output.</p>
+    <pre><code>You ──► AI app (MCP client) ──► MCP server ──► your files/folders</code></pre>
+    <p><strong>What the client does:</strong> it tells the AI what tools the server offers, carries the AI's requests to the server, and hands the results back to the AI. The client never changes your files on its own.</p>
+    <p><a href="01-what-is-an-mcp-client.html">Read section 1 in full &rarr;</a></p>
+  </section>
+
+  <section id="connect">
+    <h2>2. Connecting to local files and folders</h2>
+    <p>You can give an MCP client controlled access to folders on your computer so an AI can read them &mdash; no copying and pasting required.</p>
+    <ol>
+      <li>Pick one specific folder to share (not your whole computer).</li>
+      <li>Start a read-only filesystem MCP server pointing at that folder.</li>
+      <li>Connect the MCP client to the server.</li>
+      <li>List the server's tools and try reading a file.</li>
+      <li>Stop the server when you are done.</li>
+    </ol>
+    <div class="warn"><strong>Safety first:</strong> never share folders with passwords, keys, IDs, tax returns, medical records, or bank statements. Read the safety rules before connecting real folders.</div>
+    <p><a href="02-connecting-local-files-folders.html">Read section 2 in full &rarr;</a></p>
+  </section>
+
+  <section id="build">
+    <h2>3. Building your first Python MCP client</h2>
+    <p>The example client in <code>examples/python/mcp_client.py</code> uses only the Python standard library &mdash; nothing to install beyond Python 3, no API keys.</p>
+    <pre><code>python3 mcp_client.py python3 servers/filesystem_server.py ./example-data</code></pre>
+    <p class="ok">Expected output lists two tools: <code>list_directory</code> and <code>read_file</code>. Run <code>python3 test_client.py</code> to verify everything works (11 tests, all pass).</p>
+    <p><a href="03-building-first-python-mcp-client.html">Read section 3 in full &rarr;</a></p>
+  </section>
+
+  <section id="llm">
+    <h2>4. Connecting a local LLM to files, folders, and apps</h2>
+    <p>The MCP client bridges a local LLM to your files, folders, and apps. The example <code>local_llm_bridge.py</code> demonstrates the flow with no real LLM or model download required.</p>
+    <pre><code>python3 local_llm_bridge.py filesystem ./example-data "List the files"
+python3 local_llm_bridge.py notes ./notes-data "Read welcome.md"</code></pre>
+    <p><a href="04-connecting-local-llm.html">Read section 4 in full &rarr;</a></p>
+  </section>
+
+  <section id="safety">
+    <h2>5. Privacy and safety rules</h2>
+    <ul>
+      <li>Share specific folders, never your whole computer.</li>
+      <li>Never share folders with secrets.</li>
+      <li>Prefer read-only servers.</li>
+      <li>You are in charge: you can remove any server at any time.</li>
+      <li>Assume the AI provider sees what you send it.</li>
+    </ul>
+    <p><a href="05-privacy-safety.html">Read section 5 in full &rarr;</a></p>
+  </section>
+
+  <section id="cheat">
+    <h2>Printable cheat sheet</h2>
+    <p>A one-page reference you can print and keep by your computer. It covers the MCP concept, the 6 connection steps, the Python client, example commands, safety rules, common tools, and the JSON-RPC message shape.</p>
+    <p><a href="cheat-sheet.html">Open cheat sheet &rarr;</a></p>
+  </section>
+
+  <section>
+    <h2>Try the examples</h2>
+    <pre><code># From the project folder:
+cd examples/python
+python3 test_client.py</code></pre>
+    <p>The examples live in <code>examples/python/</code> alongside this guide.</p>
+  </section>
+</main>
+<footer>
+  <div class="inner">
+    <div class="credit">
+      <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026).<br>
+      Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC.<br>
+      Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io
+    </div>
+    <p style="margin-top:0.75rem;">MIT License. Copyright (c) 2026 Asdale Dynamics, LLC. See <a href="../LICENSE">LICENSE</a>.</p>
+  </div>
+</footer>
+</body>
+</html>

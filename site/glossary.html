@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>Glossary</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <p>Plain-English definitions for the terms used in this manual.</p>
+    <table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MCP client</strong></td><td>The part inside the AI app that starts an MCP server, asks what tools it offers, and carries requests and results back and forth.</td></tr>
+        <tr><td><strong>MCP server</strong></td><td>A small program that provides access to something useful and exposes tools for an MCP client to call.</td></tr>
+        <tr><td><strong>MCP</strong></td><td>Model Context Protocol &mdash; a shared language so AI apps can connect to files, folders, databases, and apps.</td></tr>
+        <tr><td><strong>Tool</strong></td><td>An action an MCP server offers, such as <code>list_directory</code> or <code>read_file</code>.</td></tr>
+        <tr><td><strong>stdio</strong></td><td>Standard input/output &mdash; the most common beginner connection between client and server.</td></tr>
+        <tr><td><strong>Local-first</strong></td><td>Everything runs on your own computer; nothing is uploaded just to use a tool.</td></tr>
+        <tr><td><strong>Local LLM</strong></td><td>An AI model that runs on your machine, without sending data to a cloud provider.</td></tr>
+        <tr><td><strong>JSON-RPC</strong></td><td>The message format MCP uses: one line of JSON with <code>jsonrpc</code>, <code>id</code>, <code>method</code>, and <code>result</code> or <code>error</code>.</td></tr>
+        <tr><td><strong>Path traversal</strong></td><td>Trying to reach a file outside a shared folder using <code>..</code>; the example servers reject this.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="nav">
+    <a href="cheat-sheet.html">&larr; Previous: Printable cheat sheet</a>
+    <a href="index.html">Back to guide &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

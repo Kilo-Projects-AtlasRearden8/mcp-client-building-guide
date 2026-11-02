@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5. Privacy and Safety Rules — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>5. Privacy and Safety Rules</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <h2>Privacy first</h2>
+    <p>All examples in this manual are <strong>local-first</strong>: MCP servers run as processes on your computer, files are read from your disk, and nothing is uploaded to a third party just to use an MCP server. No API keys, secrets, or personal data are needed for any example.</p>
+  </section>
+
+  <section>
+    <h2>Golden rules</h2>
+    <ul>
+      <li>Share specific folders, never your whole computer.</li>
+      <li>Never share folders with secrets (passwords, keys, IDs, tax, medical, bank data).</li>
+      <li>Prefer read-only servers.</li>
+      <li>You are in charge: stop or remove a server at any time.</li>
+      <li>Assume the AI provider sees what you send it.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Path-traversal protection</h2>
+    <p>The example filesystem server confines all access to a single root folder and rejects attempts to escape it (<code>../etc/passwd</code>).</p>
+  </section>
+
+  <section>
+    <h2>Healthcare note</h2>
+    <p>This guide is for education only. It is never medical advice. If you are a healthcare worker, do not put real patient data into an AI or an MCP server unless you have confirmed it is permitted by your organization and by applicable privacy law.</p>
+  </section>
+
+  <section class="nav">
+    <a href="04-connecting-local-llm.html">&larr; Previous: 04. Connecting a local LLM</a>
+    <a href="cheat-sheet.html">Next: Printable cheat sheet &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

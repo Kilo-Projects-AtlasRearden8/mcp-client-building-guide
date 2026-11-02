@@ -1,0 +1,10 @@
+Welcome to your first MCP server!
+
+This file lives in the shared example-data folder. An MCP client can read it
+through a filesystem MCP server without anything leaving your computer.
+
+Try asking your AI (through the MCP client):
+- "List the files in the shared folder."
+- "Read welcome.txt and tell me what it says."
+
+No secrets, API keys, or personal data are stored here.

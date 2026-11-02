@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4. Connecting a Local LLM to Files, Folders, and Apps — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>4. Connecting a Local LLM to Files, Folders, and Apps</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <h2>The idea</h2>
+    <p>An MCP client is the bridge between a local LLM and the things on your computer: files, folders, and apps. The client talks to MCP servers; each server exposes tools. The LLM (through the client) can call those tools to read a file, list a folder, or update a note &mdash; all on your machine.</p>
+    <p>No real LLM is required to try this. The example <code>local_llm_bridge.py</code> includes a stand-in LLM so the example is fully testable, offline, and private.</p>
+  </section>
+
+  <section>
+    <h2>Try the filesystem server</h2>
+    <pre><code>python3 local_llm_bridge.py filesystem ./example-data "List the files"
+python3 local_llm_bridge.py filesystem ./example-data "Read welcome.txt"</code></pre>
+  </section>
+
+  <section>
+    <h2>Try the notes app</h2>
+    <pre><code>python3 local_llm_bridge.py notes ./notes-data "Read welcome.md"
+python3 local_llm_bridge.py notes ./notes-data "List the notes"</code></pre>
+  </section>
+
+  <section>
+    <h2>What the connection looks like</h2>
+    <pre><code>You ask the local LLM a question
+    │
+    ▼
+Local LLM (through the MCP client)
+    │ picks a tool, sends tools/call
+    ▼
+MCP client  ──►  MCP server (filesystem / notes app)
+    │ reads/writes on your disk
+    ▼
+Your files / folders / local app
+    │ sends result back
+    ▼
+MCP server  ──►  MCP client  ──►  LLM answer to you</code></pre>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <ul>
+      <li>All servers are local stdio processes; nothing is uploaded.</li>
+      <li>The filesystem server is read-only and blocks path-traversal (<code>..</code>).</li>
+      <li>Only share folders you are comfortable an AI reading.</li>
+    </ul>
+  </section>
+
+  <section class="nav">
+    <a href="03-building-first-python-mcp-client.html">&larr; Previous: 03. Building your first Python client</a>
+    <a href="05-privacy-safety.html">Next: 05. Privacy and safety rules &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1. What is an MCP client? — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>1. What is an MCP client?</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <h2>The idea</h2>
+    <p>You have an AI assistant on your computer. You want it to read your files, look at your notes, or use a local app &mdash; without you copying and pasting everything into the chat.</p>
+    <p>MCP stands for <strong>Model Context Protocol</strong>. Think of it like a universal plug: instead of every AI app inventing its own way to reach your files, your calendar, or a database, MCP gives them one shared language.</p>
+  </section>
+
+  <section>
+    <h2>Client versus server</h2>
+    <ul>
+      <li><strong>The client</strong> lives inside the AI app you use. It asks, "what can this server do?" and carries the AI's requests back and forth.</li>
+      <li><strong>The server</strong> is a small program that provides access to something useful &mdash; your local files, a folder of documents, a notes app.</li>
+    </ul>
+    <p>Client and server talk over a simple connection. The most common one for beginners is called <strong>stdio</strong>: the server runs as a regular process on your computer, and the client sends it messages over standard input/output.</p>
+    <pre><code>You ──► AI app (MCP client) ──► MCP server ──► your files/folders/apps</code></pre>
+  </section>
+
+  <section>
+    <h2>What the client does</h2>
+    <ol>
+      <li>Starts the server program.</li>
+      <li>Runs an "initialize" handshake so client and server agree on the protocol.</li>
+      <li>Asks the server for its list of <strong>tools</strong> (the things the AI is allowed to do).</li>
+      <li>Carries the AI's tool requests to the server and hands the results back.</li>
+    </ol>
+    <p>The client never changes your files on its own. It only does what you &mdash; and the server &mdash; allow.</p>
+  </section>
+
+  <section>
+    <h2>Why it matters</h2>
+    <p>Without MCP, every AI integration is custom: one for your files, one for your notes, one for your calendar. With MCP, one client can talk to many servers using the same language. You pick which folders and apps to share, and you can remove a server at any time.</p>
+  </section>
+
+  <section>
+    <h2>A tiny example</h2>
+    <p>The examples in this manual use only the Python standard library &mdash; nothing to install beyond Python 3.</p>
+    <pre><code>Connected to server: example-python-filesystem
+Available tools (2):
+  - list_directory: List the files and folders in a shared folder (read-only)
+  - read_file: Read the contents of a shared file (read-only)</code></pre>
+  </section>
+
+  <section class="nav">
+    <a href="index.html">&larr; Back to guide</a>
+    <a href="02-connecting-local-files-folders.html">Next: 02. Connecting to local files and folders &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>

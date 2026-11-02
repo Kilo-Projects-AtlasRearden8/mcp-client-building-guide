@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Building Your First Python MCP Client — Building MCP Clients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to main content</a>
+<header>
+  <div class="inner">
+    <a href="index.html" style="text-decoration:none;color:inherit;">&larr; Back to guide</a>
+    <h1>3. Building Your First Python MCP Client</h1>
+    <p class="kicker">Building MCP Clients &middot; Asdale Dynamics, LLC</p>
+  </div>
+</header>
+<main id="start" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem;">
+  <section>
+    <h2>The idea</h2>
+    <p>In this section you build a small MCP <strong>client</strong> in Python. It connects to an MCP server over stdio, runs the initialize handshake, lists the server's tools, and calls a tool.</p>
+    <p>The example client uses only the Python standard library &mdash; nothing to install beyond Python 3, no API keys, no network.</p>
+  </section>
+
+  <section>
+    <h2>Start the server</h2>
+    <pre><code>client = MCPClient(["python3", "servers/filesystem_server.py", "./example-data"])
+client.start()</code></pre>
+  </section>
+
+  <section>
+    <h2>Initialize (the handshake)</h2>
+    <pre><code>info = client.initialize()</code></pre>
+  </section>
+
+  <section>
+    <h2>List the tools</h2>
+    <pre><code>tools = client.list_tools()</code></pre>
+  </section>
+
+  <section>
+    <h2>Call a tool</h2>
+    <pre><code>result = client.call_tool("read_file", {"path": "welcome.txt"})</code></pre>
+  </section>
+
+  <section>
+    <h2>Close</h2>
+    <pre><code>client.close()</code></pre>
+  </section>
+
+  <section>
+    <h2>Run it yourself</h2>
+    <pre><code>python3 mcp_client.py python3 servers/filesystem_server.py ./example-data</code></pre>
+    <pre><code>Connected to server: example-python-filesystem
+Available tools (2):
+  - list_directory: List the files and folders in a shared folder (read-only)
+  - read_file: Read the contents of a shared file (read-only)</code></pre>
+  </section>
+
+  <section>
+    <h2>Run the tests</h2>
+    <pre><code>python3 test_client.py</code></pre>
+    <p class="ok">Expected output: <code>[test] ALL TESTS PASSED</code> (11 tests, 0 failed).</p>
+  </section>
+
+  <section class="nav">
+    <a href="02-connecting-local-files-folders.html">&larr; Previous: 02. Connecting to local files and folders</a>
+    <a href="04-connecting-local-llm.html">Next: 04. Connecting a local LLM &rarr;</a>
+  </section>
+
+  <hr style="border:none;border-top:1px solid var(--line);margin:2rem 0;">
+
+  <div class="credit">
+    <strong>Credit:</strong> Written and published by <strong>Asdale Dynamics, LLC</strong> (Indiana, formed October 2026). Dylan Asdale &mdash; registered nurse, AI author, founder of Asdale Dynamics, LLC. Book: <em>The Massive AI Manual</em> &mdash; hub site: dylanasdale.github.io<br>
+    MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+  </div>
+</main>
+</body>
+</html>
